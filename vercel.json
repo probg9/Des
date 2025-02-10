@@ -24,5 +24,9 @@
         "MONGODB_URI": "mongodb+srv://probg019:npmrundev@cluster0.h4skf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
         "JWT_SECRET_KEY": "FORMDATA",
         "NODE_ENV": "production"
-    }
+    },
+    "rewrites": [
+        { "source": "/index.html", "destination": "/" },
+        { "source": "/:path*", "destination": "/index.html" }
+    ]
 }
