@@ -16,7 +16,10 @@ const bcrypt = require("bcryptjs");
 
 // Update CORS configuration
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:5174', 'https://desphysio.vercel.app'],
+  origin: [
+    'http://localhost:5173', 
+    'https://des-zeta.vercel.app' // Add your Vercel frontend domain here
+  ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
   credentials: true // Change to true to allow credentials
