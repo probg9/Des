@@ -1,16 +1,25 @@
-const adminMiddleware =async(req,res,next)=>{
-    try{
-        console.log(req.user);
-        const adminRole=req.user.isAdmin;
-        if(!adminRole){
-            return res.status(403).json({message:"Access denied.User is not an Admin."});
-        }
-     //   res.status(200).json({msg:req.user.isAdmin});
-     next();
+const jwt = require('jsonwebtoken');
 
-    }catch(error){
-        next(error);
+const adminMiddleware = (req, res, next) => {
+  const token = req.headers.authorization?.split(" ")[1]; // Assuming Bearer token
 
+  if (!token) {
+    return res.status(403).json({ success: false, message: "No token provided" });
+  }
+
+  jwt.verify(token, process.env.JWT_SECRET_KEY, (err, decoded) => {
+    if (err) {
+      return res.status(403).json({ success: false, message: "Failed to authenticate token" });
     }
+
+    // Check if the user is an admin
+    if (!decoded.isAdmin) {
+      return res.status(403).json({ success: false, message: "Access denied: Admins only" });
+    }
+
+    // If the user is an admin, proceed to the next middleware
+    next();
+  });
 };
-module.exports=adminMiddleware;
+
+module.exports = adminMiddleware;

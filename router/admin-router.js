@@ -35,21 +35,7 @@ router.delete(
 );
 router.get("/contacts", authMiddleware, adminMiddleware, admin.getAllContacts);
 router.get("/payments", authMiddleware, adminMiddleware, admin.getAllPayments);
-router.get("/forms", authMiddleware, adminMiddleware, async (req, res) => {
-  try {
-    const forms = await Form.find().sort({ createdAt: -1 });
-    res.status(200).json({
-      success: true,
-      forms
-    });
-  } catch (error) {
-    console.error("Error fetching forms:", error);
-    res.status(500).json({
-      success: false,
-      message: "Failed to fetch forms"
-    });
-  }
-});
+router.get("/forms", admin.getAllForms);
 router.get("/records", authMiddleware, admin.getAllForm);
 router.delete("/records/delete/:id", authMiddleware, admin.deleteFormsById);
 
@@ -131,5 +117,7 @@ router.patch("/forms/update/:id", authMiddleware, adminMiddleware, async (req, r
     });
   }
 });
+
+router.post("/forms", admin.createForm);
 
 module.exports = router;
