@@ -90,7 +90,7 @@ const login = async (req, res) => {
         isAdmin: user.isAdmin 
       },
       process.env.JWT_SECRET_KEY,
-      { expiresIn: "24h" }
+      { expiresIn: "96h" }
     );
 
     // Remove password from response

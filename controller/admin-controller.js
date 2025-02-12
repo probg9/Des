@@ -212,6 +212,20 @@ const deletePaymentById = async (req, res) => {
   }
 };
 
+const getAllForms = async (req, res) => {
+  try {
+    const forms = await Form.find();
+    res.status(200).json({ success: true, forms });
+  } catch (error) {
+    console.error("Error fetching forms:", error);
+    res.status(500).json({ success: false, message: "Failed to fetch forms" });
+  }
+};
+
+const createForm = async (req, res) => {
+  // Logic to create a form
+};
+
 module.exports = {
   getAllUsers,
   getAllContacts,
@@ -226,5 +240,6 @@ module.exports = {
   getPaymentsById,
   deletePaymentById,
   getFormsById,
-
+  getAllForms,
+  createForm,
 };

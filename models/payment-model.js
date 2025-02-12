@@ -5,7 +5,11 @@ const paymentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  email: {
+  email:{
+    type: String,
+    required:true,
+  },
+  phone: {
     type: String,
     required: true,
   },
@@ -13,15 +17,26 @@ const paymentSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  date: {
+  payment_purpose:{
+    type: String,
+  },
+  payment_date: {
     type: Date,
     default: Date.now,
+  },
+  payment_mode: {
+    type: String,
+    required: true,
+  },
+  transaction_id: {
+    type: String,
+    required: true,
   },
   status: {
     type: String,
     enum: ['pending', 'completed', 'failed'],
     default: 'pending'
-  }
+  },
 });
 
 const Payment = mongoose.model("Payment", paymentSchema);
