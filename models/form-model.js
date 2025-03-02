@@ -10,6 +10,7 @@ const formSchema = new mongoose.Schema({
     default: () =>
       new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" }), // Automatically set to the current date/time in Indian time zone
   },
+  FormId:{type:String},
   DateTime:{type:String},
   FilledBy_Name: { type: String },
   Type_of_form: { type: String },
@@ -115,6 +116,7 @@ const formSchema = new mongoose.Schema({
   TheOsteoporosisKnowledgeAssessmentTool: [{ type: mongoose.Schema.Types.Mixed }],
   SixMinuteWalkTest: { type: String },
   Grade_of_Dyspnoea: { type: String },
+  Treatment: { type: String },
   Additional_remarks: { type: String },
 
   // Corrected field name

@@ -4,6 +4,7 @@ const Formdata = async (req, res) => {
   try {
     // Destructure request body
     const {
+      FormId,
       DateTime,
       FilledBy_Name,
       Name,
@@ -84,6 +85,7 @@ const Formdata = async (req, res) => {
       KneeRange,
       HipRange,
       AnkleRange,
+      Treatment,
       Additional_remarks,
       Medical_History,
     } = req.body;
@@ -128,6 +130,7 @@ const Formdata = async (req, res) => {
     }
     // Create a new document with the provided data
     const newForm = await Form.create({
+      FormId,
       DateTime,
       FilledBy_Name,
       Name,
@@ -211,6 +214,7 @@ const Formdata = async (req, res) => {
       AnkleRange,
       GaitImage,
       PostureImage,
+      Treatment,
       Additional_remarks,
       ...parsedFields, // Spread parsed JSON fields
     });
